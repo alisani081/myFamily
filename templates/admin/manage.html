@@ -1,0 +1,138 @@
+{% extends "homelayout.html" %} 
+{% block title %} Manage {% endblock %}
+{% block head %}
+<style>
+    #nameField {
+        display: none;
+    }
+    .fieldShow {
+        display: block !important;
+    }
+    .closeBtn {
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="ui container" id="wrapper">
+    <div class="ui mini breadcrumb" style="margin-bottom: 15px;">
+        <a class="section">Home</a>
+        <i class="right chevron icon divider"></i>
+        <a class="section active">Manage</a>
+    </div>
+    <div class="ui grid">
+        <div class="sixteen wide column"> 
+            {% block balance %} 
+                {{ super() }}
+            {% endblock %}
+            <!-- Tab starts here -->
+            <h5>Manage Money</h5>
+            <div class="ui top attached tabular menu">
+                <a class="item active" data-tab="add">
+                    <span> <i class="plus green circle icon"></i></span> Add Contribution                    
+                </a>
+                <a class="item" data-tab="withdraw">
+                    <i class="tag red icon"></i> Withdraw Money
+                </a>              
+            </div>
+            <div class="ui bottom attached tab active segment" data-tab="add" style="margin-bottom: 50px; padding-bottom: 20px; height: auto;">
+                <div id="result"></div>
+                <div id="error"></div>
+                <form method="POST" id="contributionForm">
+                    <div class="ui form">
+                        <div class="required field">
+                            <label>Name</label>
+                            <select class="ui search selection dropdown" id="nameSelect">
+                                <option value="" selected>Select Name</option>
+                                {% for member in members %}
+                                    <option value="{{ member.name }}">{{ member.name }}</option>
+                                {% endfor %}   
+                            </select>
+                            <div class="add_member" style="text-align: right; text-decoration: underline; text-decoration-color: #41a0db;"><a href="#">Add new name</a></div>
+                        </div>
+                        <div class="required field" id="nameField">
+                            <label>Name <span style="float: right;" class="closeBtn"><i class="close red large icon"></i></span></label>
+                            <input type="text" name="name" placeholder="Enter new name" id="newName" required>
+                        </div>
+                        <div class="required field">
+                            <label>Amount</label>                            
+                            <div class="ui labeled input">
+                                <div class="ui label">
+                                    &#8358;
+                                </div>
+                                <input type="number" name="amount" id="amount" placeholder="Amount" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Months <span style="font-size: 9px; font-style: italic;">(Leave empty for current month)</span></label>
+                            <select class="ui fluid search dropdown" multiple="multiple" id="months">
+                                <option value="">Select Months</option>
+                                <option value="Jan">January</option>
+                                <option value="Feb">February</option>
+                                <option value="Mar">March</option>
+                                <option value="Apr">April</option>
+                                <option value="May">May</option>
+                                <option value="Jun">June</option>
+                                <option value="Jul">July</option>
+                                <option value="Aug">August</option>
+                                <option value="Sep">September</option>
+                                <option value="Oct">October</option>
+                                <option value="Nov">November</option>
+                                <option value="Dec">December</option>
+                            </select>
+                        </div>                         
+                        <input type="submit" class="ui fluid submit button" id="saveContBtn" value="Save">                         
+                    </div>
+                </form>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="withdraw" style="margin-bottom: 50px; padding-bottom: 20px; height: auto;">
+                <div id="result2"></div>
+                <div id="error2"></div>
+                <form method="POST" id="withdrawForm">
+                    <div class="ui form">
+                        <div class="required field">
+                            <label>Title</label>
+                            <input type="text" placeholder="Activity Title" name="title" id="title">
+                        </div>
+                        <div class="required field">
+                            <label>Amount</label>                            
+                            <div class="ui labeled input">
+                                <div class="ui label">
+                                    &#8358;
+                                </div>
+                                <input type="number" name="withdrawAmount" id="withdrawAmount" placeholder="Amount" min="1">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Remark</label>
+                            <input type="text" name="remark" placeholder="Activity Description" id="remark">
+                        </div>
+                        <input type="submit" class="ui fluid submit button" id="withdrawBtn" value="Withdraw"/>
+                    </div>
+                </form>
+            </div>
+            <!-- Tab ends here -->
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready( function () {
+        $('#recordsTable').dataTable();
+        
+        $('.menu .item')
+            .tab();
+        
+        $('.ui.dropdown')
+            .dropdown();
+        
+        $('.add_member').click(function() {
+            $("#nameField").toggleClass("fieldShow");
+        });
+        $('.closeBtn').click(function() {
+            $('#nameField').removeClass('fieldShow');
+        });
+        
+    } );    
+</script>
+{% endblock %}

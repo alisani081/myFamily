@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat</title>
+        <script type="text/javascript" src="../static/js/socket.io.min.js"></script>
+        <script type="text/javascript" src="../static/chat.js"></script>
+    </head>
+    <body>
+        <h1>Chat App</h1>
+        <!-- <form id="form" method="POST"> -->
+            <p>
+                Name: <br/>
+                <input type="text" id="username" name="username" placeholder="Username" value="alisani">
+            </p>
+            <p>
+                Amount: <br/>
+                <input type="text" id="rname" placeholder="Room Name" value="family">
+            </p>
+            <button id="submit" type="submit">Save</button>
+        <!-- </form> -->
+        <hr/>
+        <h3>Room</h3>
+        <div style="margin-top: 20px; padding: 10px; border: 1px solid silver; border-radius: 3px; height: 100px;">  
+            <ul id="room"></ul>       
+        </div> 
+        <button id="getBalance">Get New Balance</button> 
+        <div id="balance">10000</div>      
+    </body>
+</html>

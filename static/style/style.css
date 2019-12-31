@@ -1,0 +1,98 @@
+.inner-content {
+    margin-top: 80px;
+}
+#wrapper .ui.fixed.menu {
+    background-color: #0033ff !important;
+}
+
+#wrapper .bottom .item{
+    color: #8f8f8f !important; 
+    cursor: pointer; 
+    padding: 5px !important; 
+}
+#wrapper .ui.text.menu .active.item {
+    color: #0033ff;
+}
+#wrapper #bottom-menu {     
+    background: #fff !important;
+    box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: saturate(125%) blur(10px);
+    -moz-backdrop-filter: saturate(125%) blur(10px);
+    -ms-backdrop-filter: saturate(125%) blur(10px);
+    backdrop-filter: saturate(125%) blur(10px); 
+}
+
+#wrapper #balance-card {
+    color: #fff;
+    background: #00416A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E4E5E6, #00416A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E4E5E6, #00416A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+}
+#wrapper #balance-card .content .right i {
+    box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: saturate(125%) blur(10px);
+    -moz-backdrop-filter: saturate(125%) blur(10px);
+    -ms-backdrop-filter: saturate(125%) blur(10px);
+    backdrop-filter: saturate(125%) blur(10px); 
+    cursor: pointer;    
+}
+#wrapper #balance-card .content .right i {
+    background: #567f99;
+}
+
+#wrapper #balance-card .content .bottom-statistic, .ui.mini.statistic > .value {
+    font-size: 0.8rem;
+}
+.ui.mini.statistic > .value {
+    font-size: 1.1rem !important;   
+}
+.ui.tabular.menu {
+    cursor: pointer;
+}
+input[type="search"], select { 
+    line-height: 1.21428571em;
+    padding: .67857143em 1em;
+    background: #fff;
+    border: 1px solid rgba(34,36,38,.15);
+    color:rgba(0,0,0,.87);
+    border-radius: .28571429rem;
+    box-shadow: 0 0 0 0 transparent inset;
+    transition: color .1s ease,border-color .1s ease;
+    margin: 10px;
+} 
+#recordsTable_paginate, #monthTable_paginate, #allTimeTable_paginate, #donationTable_paginate, #statementTable {
+    margin-bottom: 20px !important;
+    box-shadow: 0 0 0 0 transparent inset !important;
+}
+.paginate_button {
+    border: 1px solid rgba(34,36,38,.15) !important;
+    line-height: 1 !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important; 
+    border-radius: 0px !important;
+}
+h4.ui.header .sub.header {
+    font-size: 0.8rem;
+}
+.ui .button {
+    background: #0033ff !important;
+    color: #fff;
+}
+.ui .login {
+    background: #21ba45 !important;
+    color: #fff !important;
+}
+#error, #error2 {
+    color: red;
+    padding: 5px;
+}
+#result, #result2 {
+    color: green;
+    padding: 5px;
+}

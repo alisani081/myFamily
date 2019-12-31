@@ -1,0 +1,100 @@
+{% extends "homelayout.html" %}
+{% block title %} Home {% endblock %}
+{% block content %}
+<div class="ui container" id="wrapper">
+    <div class="ui mini breadcrumb" style="margin-bottom: 15px;">
+        <a class="section">Home</a>
+        <i class="right chevron icon divider"></i>
+        <a class="section active">Dashboard</a>
+    </div>
+    <div class="ui grid">
+        <div class="sixteen wide column">             
+            {% block balance %} 
+                {{ super() }}
+            {% endblock %}
+            <!-- Tab starts here -->
+            <h5>Contribution Records</h5>
+            <div class="ui top attached tabular menu">
+                <a class="item active" data-tab="month">This Month</a> 
+                <a class="item" data-tab="all">All Time</a>
+            </div>
+            <div class="ui bottom attached tab active segment" data-tab="month" style="margin-bottom: 50px; padding-bottom: 20px; height: auto;">                
+                <table class="ui celled fluid unstackable table" id="monthTable">
+                    <thead>
+                        <tr>
+                            <th>Name <span style="text-align: right; float: right;"><i class="user icon"></i></span></th>
+                            <th>Amount (&#8358;)</th>
+                            <th>Month(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for month_cont in month_conts %}
+                            <tr>
+                                <td>
+                                    <h4 class="ui image header"> 
+                                        <div class="content">
+                                            {{ month_cont.name }}
+                                            <div class="sub header">{{ month_cont.created.strftime('%d-%b-%Y') }}</div>
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td>                                    
+                                    {{ "₦{:,.0f}".format(month_cont.amount) }}  
+                                </td>
+                                <td>{{ month_cont.month }}</td>
+                            </tr> 
+                            {% else %}
+                            <tr class="odd">
+                                <td colspan="3" class="dataTables_empty" valign="top">No contribution for this month yet.</td>
+                            </tr>
+                        {% endfor %}                                                                  
+                    </tbody>
+                </table>
+            </div>            
+            <div class="ui bottom attached tab segment" data-tab="all" style="margin-bottom: 50px; padding-bottom: 20px; height: auto;">
+                <table class="ui celled fluid unstackable table" id="allTimeTable">
+                    <thead>
+                        <tr>
+                            <th>Name <span style="text-align: right; float: right;"><i class="user icon"></i></span></th>
+                            <th>Amount (&#8358;)</th>
+                            <th>Month(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for contribution in contributions %}
+                            <tr>
+                                <td>
+                                    <h4 class="ui image header"> 
+                                        <div class="content">
+                                            {{ contribution.name }}
+                                            <div class="sub header">{{ contribution.created.strftime('%d-%b-%Y') }}</div>
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td>                                    
+                                    {{ "₦{:,.0f}".format(contribution.amount) }}  
+                                </td>
+                                <td>{{ contribution.month }}</td>
+                            </tr> 
+                        {% endfor %}                                                                  
+                    </tbody>
+                </table>
+            </div>
+            <!-- Tab ends here -->
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready( function () {
+        $('#monthTable').dataTable({
+            "aaSorting": []
+        });
+        $('#allTimeTable').dataTable( {
+            "aaSorting": []
+        } );
+        
+        $('.menu .item')
+            .tab();        
+    } );    
+</script>
+{% endblock %}

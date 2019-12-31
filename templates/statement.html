@@ -1,0 +1,69 @@
+{% extends "homelayout.html" %}
+{% block title %} Statement {% endblock %}
+{% block content %}
+<div class="ui container" id="wrapper">
+    <div class="ui mini breadcrumb" style="margin-bottom: 15px;">
+        <a class="section">Home</a>
+        <i class="right chevron icon divider"></i>
+        <a class="section active">Statement of Account</a>
+    </div>
+    <div class="ui grid">
+        <div class="sixteen wide column">  
+            <h5>Transactions</h5>            
+            <div class="ui segment" style="margin-bottom: 50px; padding-bottom: 20px; height: auto;">
+                    <table class="ui celled fluid unstackable table" id="statementTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</span></th>
+                                    <th>Amount (&#8358;)</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>                                
+                                {% for credit in statements[0] %}
+                                    <tr>
+                                        <td>
+                                            <h4 class="ui image header"> 
+                                                <div class="content">
+                                                    {{ credit.name }}
+                                                    <div class="sub header">{{ credit.created.strftime('%d-%b-%Y') }}</div>
+                                                </div>
+                                            </h4>
+                                        </td>
+                                        <td style="color:green">
+                                        + {{ "{:,.0f}".format(credit.amount) }}
+                                        </td>
+                                        <td>CR</td>
+                                    </tr> 
+                                    {% endfor %}
+                                    {% for debit in statements[1] %}
+                                    <tr>
+                                        <td>
+                                            <h4 class="ui image header"> 
+                                                <div class="content">
+                                                    {{ debit.name }}
+                                                    <div class="sub header">{{ debit.created.strftime('%d-%b-%Y') }}</div>
+                                                </div>
+                                            </h4>
+                                        </td>
+                                        <td style="color:red">
+                                        - {{ "{:,.0f}".format(debit.amount) }}
+                                        </td>
+                                        <td>DR</td>
+                                    </tr>
+                                    {% endfor %}                       
+                            </tbody>
+                        </table>
+            </div>
+            <!-- Tab ends here -->
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready( function () {
+        $('#statementTable').dataTable({
+            "aaSorting": []
+        });
+    } );    
+</script>
+{% endblock %}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Standard Meta -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <title>myFamily - Admin</title>
+        <style>        
+            body {
+                width: 90%;
+                height: 100%;
+                margin: 0 auto;
+                padding: 0 auto;
+                background-color: #1e0032;
+                color: #fff;
+            }
+            .field {
+                margin: 10px;
+                padding: 5px;
+            }
+            input {
+                width: 98% !important;
+            }
+            input, select {
+                width: 100%;
+                height: 30px;
+                border-radius: 5px;
+                border: none; 
+                padding: 3px;
+            }
+            .label {
+                padding-bottom: 3px;
+            }
+            button {
+                margin: 10px 10px 10px 15px;
+                padding: 5px;
+                width: 91%;
+                color: #fff;
+                height: 35px;
+                border-radius: 5px;
+                border: none;
+                background-color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="container">
+                <header> 
+                    <h1 style="text-align: center;">myFamily</h1>  
+                    <hr> 
+                    <h4 style="text-align: right;">Welcome, Super Admin &nbsp; | &nbsp; <a href="{{ url_for('logout') }}">Logout</a></h4>
+                </header>  
+                <section style="margin-top:50px;">
+                    {% if error %}            
+                            <p style="color: red;">{{ error }}</p>                         
+                    {% endif %}
+                    <form action="{{ url_for('admin') }}" method="POST">
+                        <fieldset>
+                            <legend>Create Account</legend>
+                            <div class="field">
+                                    <div class="label">Username</div>
+                                    <input type="text" name="username" placeholder="Username" autocomplete="off" value="{{ request.form.username }}">
+                                </div>
+                                <div class="field">
+                                    <div class="label">Password</div>
+                                    <input type="password" name="password" placeholder="Password">
+                                </div>
+                                <div class="field">
+                                    <div class="label">Role</div>
+                                    <select name="role" >
+                                        <option value="member">Member</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="superAdmin">SuperAdmin</option>
+                                    </select>
+                                </div>
+                                <button type="submit">Create Account</button>
+                        </fieldset>                        
+                    </form>     
+                </section> 
+            </div>
+        </div>           
+    </body>
+</html>

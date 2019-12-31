@@ -1,0 +1,93 @@
+{% extends "auth/layout.html" %}
+
+{% block head %}
+<style>            
+    body {
+        background-color: #0033ff; 
+        color: #fff;    
+    }
+    body > .grid {
+        height: 100%;
+    }
+    .image {
+        margin-top: -150px;
+        height: 100px;
+        width: auto;
+    }
+    .column {
+        max-width: 450px;
+    }  
+    input, button, .message { 
+        margin: 0px 15px 0px 15px !important;        
+    }
+    input, .user.icon, .lock.icon {
+        margin-left: 15px !important;
+        padding-right: 15px !important;         
+    }
+    /* button {
+        width: 345px  !important;
+    } */
+    .label {
+        float: left !important;
+        padding: 0px 0px 5px 15px;
+    }
+    h2 {
+        margin: 3px 0px 10px 0px; 
+    }
+</style>
+
+<script>    
+    document.addEventListener("DOMContentLoaded", () => {
+        login_btn = document.querySelector("#login_btn");
+        inp = document.querySelector("#inp");
+
+        comp_styles = window.getComputedStyle(inp);
+        new_width = comp_styles.getPropertyValue('width');
+
+        login_btn.style.width = new_width
+    })
+</script>
+{% endblock %}
+
+{% block body %} 
+    <div class="ui middle aligned center aligned grid">
+        <div class="column">
+            <img src="{{url_for('static', filename='images/logo.png')}}" class="image">  
+            <h2>
+                <div class="content" style="color: #fff; margin-top: 0px; padding: 0px;">Sani Abdulkadir Forum</div>          
+            </h2> 
+            <h3>Login</h3>           
+            {% if error %}            
+                <div class="ui error message">
+                    <i class="close icon"></i>
+                    {{ error }}
+                </div>
+            {% endif %}
+            
+            <form class="ui large form" method="POST" action="{{ url_for('login') }}">
+                <div class="ui stacked">
+                    <div class="field">
+                        <div class="label">
+                            Username
+                        </div>
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="username" placeholder="Username" value="{{ request.form.username }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Password
+                        </div>
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password" placeholder="Password" id="inp">
+                        </div>
+                    </div>
+                    <button class="ui large fluid submit button login" id="login_btn">Login</button>
+                </div>       
+            </form>  
+        </div>
+    </div>
+    <a href="#" class="ui bottom right attached orange pointing label">Need help?</a>
+{% endblock %}
