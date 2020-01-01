@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, url_for, session, flash, redirect, jsonify, send_from_directory, send_file
 from models import *
 import datetime as dt
@@ -5,9 +6,9 @@ from auth import login_user, login_required, create_account
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://alisani:37277079@localhost/myFamily"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SECRET_KEY"] = b'"\x0eV\xb4\x97\n\x1e\xcd\x81\x9f\x9c]~I\xa4\xdb'
+app.config["SECRET_KEY"] = os.getenv("SECRET_KET")
 db.init_app(app)
 
 # Configure session to use filesystem
