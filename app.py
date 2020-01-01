@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, session, flash, redirect, jsonify 
+from flask import Flask, render_template, request, url_for, session, flash, redirect, jsonify, send_from_directory, send_file
 from models import *
 import datetime as dt
 from auth import login_user, login_required, create_account  
@@ -22,6 +22,14 @@ def last_update_time():
         return contribution.created
     else:
         return donation.created
+
+@app.route("/manifest.json")
+def manifest():
+    return render_template('manifest.json')
+
+@app.route("/sw.js")
+def serviceWorker():
+    return send_file('templates/sw.js')
 
 @app.route("/admin", methods=["POST", "GET"])
 @login_required

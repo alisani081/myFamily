@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    const saveContBtn = document.querySelector("#saveContBtn");
+    const saveContBtn = document.getElementById("saveContBtn");
     
     document.querySelector("#saveContBtn").onclick = contribute;
 

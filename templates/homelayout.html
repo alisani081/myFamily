@@ -3,7 +3,7 @@
 {% block head %}
 <style>
 .current {
-    color: 0033ff !important;
+    color: #0033ff !important;
 }
 </style>
 {% endblock %}
@@ -22,7 +22,7 @@
         <!-- Bottom Nav -->
         <div class="ui bottom fixed labeled icon text fluid four item menu" id="bottom-menu">            
             <a class="item" href="{{ url_for('index') }}" data-menu="/">
-            <i class="home icon current"></i>
+            <i class="home icon"></i>
                 Home
             </a>
             {% if session.role == 'admin' or session.role == 'superAdmin' %}
@@ -88,7 +88,11 @@
                                     <div class="ui basic segment" style="background: none; padding-top: 10px; padding-bottom: 0px; margin: 0px;">                                 
                                         <div class="ui mini statistic" style="margin-top: 0px;">
                                             <div class="ui value" style="color: green; text-align: left;">
-                                                &#8358; {{ "{:,.0f}".format(month_conts|sum(attribute='amount') - donations|sum(attribute='amount')) }} <i class="arrow up green icon"></i>
+                                                {% if month_conts|length > 1 %}
+                                                    &#8358; {{ "{:,.0f}".format(month_conts|sum(attribute='amount')) }} <i class="arrow up green icon"></i>
+                                                    {% else %}
+                                                     &#8358; 0 <i class="arrow up green icon"></i>
+                                                {% endif %}
                                             </div>
                                             <div class="mini label" style="text-align: left; text-transform: capitalize; padding: 5px; font-size: 11px;">
                                                 This Month
